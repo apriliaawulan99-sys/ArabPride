@@ -90,7 +90,7 @@
     ['مَفْتُوحَةٌ',['ف ت ح – اسم مفعول مؤنث','ف ت ح – اسم فاعل مؤنث','ف ت ح – مصدر'],0,'مفتوحة adalah bentuk feminin dari isim maf’ul مَفْتُوح, dari فَتَحَ–يَفْتَحُ.'],
   ];
   function buildGames(){
-    const root=$('#game-list');if(!root)return;root.innerHTML='';
+    let root=$('#game-list');if(!root){const host=$('#games');if(!host)return;root=make('div','game-grid');root.id='game-list';host.append(root);}root.innerHTML='';
     const cards=[
       {name:'Sentence Puzzle',desc:'Pilih potongan kata, susun dalam ruang jawaban, lalu periksa. Kunci jawaban berada di menu terpisah.',type:'puzzle'},
       {name:'Tebak Jenis Kata',desc:'Tentukan kedudukan kata berdasarkan hubungan dan konteks kalimat.',type:'mcq',items:wordData},
@@ -112,14 +112,21 @@
   }
   function arrangeFlow(){
     const learning=$('#learning'),nav=$('.tabs',learning);if(!learning||!nav)return;
-    const assessment=$('#assessment'),reading=$('#reading'),lesson=$('#lesson'),games=$('#games'),report=$('#report');if(!assessment||!reading||!lesson||!games||!report)return;
+    const assessment=$('#assessment'),reading=$('#reading'),lesson=$('#lesson');
+    if(!assessment||!reading||!lesson)return;
+    // Rebuild missing destination panels defensively so a partial render cannot hide navigation.
+    let games=$('#games');
+    if(!games){games=make('section','panel');games.id='games';games.innerHTML='<div class="panel-title"><div><p class="eyebrow">BELAJAR SAMBIL BERMAIN</p><h3>Mini Games Nahwu-Sharaf</h3><p>Tiga permainan untuk menguji penerapan kaidah.</p></div><span class="pill">3 permainan</span></div><div id="game-list" class="game-grid"></div>';lesson.insertAdjacentElement('afterend',games);}
+    let report=$('#report');
+    if(!report){report=make('section','panel','<div class="panel-title"><div><p class="eyebrow">REFLEKSI BELAJAR</p><h3>Perkembangan Belajarmu</h3><p>Bandingkan hasil pre-test dan post-test.</p></div></div><div id="progress-report" class="quiz-intro">Kerjakan kedua asesmen untuk melihat perbandingan hasil.</div>');report.id='report';games.insertAdjacentElement('afterend',report);}
     // Move pre-test to the first position and split post-test into its own final assessment panel.
-    const postArea=$('#post-area');const post=$('#post-area');
-    if(postArea){const postPanel=make('section','panel');postPanel.id='post-assessment';postPanel.append(make('div','panel-title','<div><p class="eyebrow">ASESMEN AKHIR</p><h3>Post-test · 30 soal</h3><p>Uji kembali kemampuan analisis setelah mempelajari materi dan permainan.</p></div><span class="pill">30 soal</span>'));postPanel.append(make('div','quiz-intro','Kerjakan setelah menyelesaikan ruang baca, analisis, dan tiga permainan.'));postPanel.append(postArea);games.insertAdjacentElement('afterend',postPanel);}
+    const postArea=$('#post-area');
+    let postPanel=$('#post-assessment');
+    if(postArea&&!postPanel){postPanel=make('section','panel');postPanel.id='post-assessment';postPanel.append(make('div','panel-title','<div><p class="eyebrow">ASESMEN AKHIR</p><h3>Post-test · 30 soal</h3><p>Uji kembali kemampuan analisis setelah mempelajari materi dan permainan.</p></div><span class="pill">30 soal</span>'));postPanel.append(make('div','quiz-intro','Kerjakan setelah menyelesaikan ruang baca, analisis, dan tiga permainan.'));postPanel.append(postArea);games.insertAdjacentElement('afterend',postPanel);}
     const switcher=$('.assessment-switch',assessment);if(switcher)switcher.remove();const postTab=$('#post-area');if(postTab)postTab.hidden=false;
     const h=assessment.querySelector('.panel-title h3');if(h)h.textContent='Pre-test · 30 soal';const desc=assessment.querySelector('.panel-title p:last-child');if(desc)desc.textContent='Asesmen awal sebelum membaca dan mempelajari analisis nahwu-sharaf.';
     const oldNote=assessment.querySelector('.note');if(oldNote)oldNote.textContent='Kerjakan sebelum membuka ruang baca. Soal menilai kemampuan mengenali fungsi kata dan hubungan antarkata dalam konteks.';
-    const buttons=[['assessment','01 · Pre-test'],['reading','02 · Ruang Baca'],['lesson','03 · Analisis'],['games','04 · Mini Games'],['post-assessment','05 · Post-test'],['report','06 · Hasil Belajar']];nav.innerHTML='';buttons.forEach(([id,label],i)=>{const b=make('button','tab'+(i===0?' active':''),label);b.type='button';b.dataset.panel=id;b.onclick=()=>show(id);nav.append(b);});
+    const buttons=[['assessment','01 · Pre-test'],['reading','02 · Ruang Baca'],['lesson','03 · Analisis'],['games','04 · Mini Games'],['post-assessment','05 · Post-test'],['report','06 · Hasil Belajar']];nav.innerHTML='';buttons.forEach(([id,label],i)=>{const b=make('button','tab'+(i===0?' active':''),label);b.type='button';b.dataset.panel=id;b.addEventListener('click',()=>show(id));nav.append(b);});
     assessment.parentElement.insertBefore(assessment,reading);
     function show(id){$$('.panel',learning).forEach(p=>{p.classList.toggle('active',p.id===id);if(p.id===id){p.classList.remove('page-enter');void p.offsetWidth;p.classList.add('page-enter');}});$$('.tab',nav).forEach(b=>b.classList.toggle('active',b.dataset.panel===id));if(id==='post-assessment'&&window.preScore===undefined){const note=$('#post-assessment .quiz-intro');if(note)note.textContent='Kamu dapat melihat post-test, tetapi sebaiknya kerjakan pre-test terlebih dahulu agar hasil perkembangan dapat dibandingkan.';}}
     $$('[data-goto]',learning).forEach(b=>{b.onclick=()=>show(b.dataset.goto);});
@@ -130,7 +137,7 @@
   }
   document.addEventListener('DOMContentLoaded',()=>{
     // extra.js registers its renderer first; this callback runs after it.
-    addAudioButtons();rebuildExtraAnalysis();buildGames();arrangeFlow();
+    try{addAudioButtons();rebuildExtraAnalysis();buildGames();arrangeFlow();}catch(err){console.error('ArabPride initialization error:',err);const msg=make('div','note','Sebagian fitur belum termuat. Muat ulang halaman; jika masalah berlanjut, hubungi pengelola media.');const main=$('#learning');if(main)main.prepend(msg);}
     const note=make('p','audio-note','Audio otomatis menggunakan suara Arab yang tersedia pada browser/perangkat dengan kecepatan diperlambat. Kualitas makhraj, harakat, dan i‘rab bergantung pada mesin suara; bacaan otomatis ini belum dapat dijamin setepat rekaman penutur Arab yang telah ditashih. Untuk audio tervalidasi, gunakan rekaman penutur/guru yang membaca teks berharakat dan telah diperiksa ahli.');const reading=$('#reading');if(reading)reading.append(note);
   });
 })();
