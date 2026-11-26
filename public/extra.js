@@ -46,7 +46,7 @@ function renderExtras(){
  ['Dalam “لَنْ يَذْهَبَ”, tanda nashab يذهبَ adalah …',['Fathah','Kasrah','Dhammah'],0,'Fi’il mudhari’ mufrad shahih akhir dinashabkan dengan fathah.'],
  ['Kata هؤلاء dalam kalimat berfungsi sebagai …',['Isim isyarah','Huruf jar','Fi’il amr'],0,'هؤلاء adalah kata tunjuk untuk jamak dekat.'],
  ['Pada “الْمُعَلِّمَاتُ يَشْرَحْنَ”, dhamir نَ pada يشرحنَ merujuk kepada …',['Perempuan jamak','Laki-laki tunggal','Benda dua'],0,'نون النسوة menjadi penanda pelaku perempuan jamak.'],
- ['Strategi terbaik menentukan fungsi kata dalam teks ialah …',['Melihat konteks dan hubungan kata','Menghafal arti kata saja','Menentukan dari panjang kata'],0,'I’rab dan fungsi kata ditentukan oleh susunan serta hubungan sintaksis.']
+ ['Strategi terbaik menentukan fungsi kata dalam teks ialah …',['Melihat konteks dan hubungan kata','Menghafal arti kata saja','Menentukan dari panjang kata'],0,'I’rab dan fungsi kata ditentukan oleh susunan serta hubungan sintaksis.'],
  ['في الجملة “وَضَعَتْ سَلْمَى الْحَقِيبَةَ تَحْتَ الْمَكْتَبِ”، ما fungsi تَحْتَ؟',['Fi’il madhi','Zharaf makan manshub dan mudhaf','Huruf jar'],1,'تحتَ menunjukkan lokasi, manshub sebagai zharaf makan, dan menjadi mudhaf bagi المكتب.'],
  ['Pada “إِنَّ الْمُعَلِّمَ مُخْلِصٌ”, kedudukan المعلمَ adalah …',['Isim إنَّ manshub','Khabar إنَّ','Fa’il'],0,'إنَّ menashabkan isimnya; المعلمَ adalah isim إنَّ.'],
  ['Dalam “الطَّالِبَاتُ يَكْتُبْنَ الْإِجَابَاتِ”, dhamir نَ pada يكتبنَ menunjukkan …',['Pelaku perempuan jamak','Objek dua orang','Pelaku laki-laki tunggal'],0,'نون النسوة adalah dhamir yang menunjukkan fa’il perempuan jamak.'],
@@ -78,7 +78,7 @@ function renderExtras(){
  ['Jika المسلمونَ menjadi fa’il, tanda rafa’-nya …',['Wawu','Alif','Kasrah'],0,'Jamak mudzakkar salim dirafa’kan dengan wawu.'],
  ['Pada “لَمْ يَكْتُبْ”, يكتبْ menjadi majzum karena …',['لم','لن','في'],0,'لم menjazmkan fi’il mudhari’.'],
  ['Perhatikan “الطَّالِبَةُ تَقْرَأُ الْقِصَّةَ”. Analisis tepat ialah …',['الطالبة مبتدأ، تقرأ فعل وفاعله مستتر، القصة مفعول به','الطالبة مفعول به، القصة فاعل','كل الكلمات حروف'],0,'Kalimat dimulai mubtada; jumlah fi’liyyah menjadi khabar; القصة objek dari تقرأ.'],
- ['Mengapa analisis kata harus melihat kalimat utuh?',['Karena satu bentuk kata dapat memiliki fungsi berbeda sesuai konteks','Karena semua kata selalu berfungsi sama','Karena harakat tidak penting'],0,'Fungsi nahwu ditentukan oleh posisi dan relasi kata dalam susunan kalimat.']
+ ['Mengapa analisis kata harus melihat kalimat utuh?',['Karena satu bentuk kata dapat memiliki fungsi berbeda sesuai konteks','Karena semua kata selalu berfungsi sama','Karena harakat tidak penting'],0,'Fungsi nahwu ditentukan oleh posisi dan relasi kata dalam susunan kalimat.'],
  ['Pada “كَانَ الْجَوُّ مُعْتَدِلًا”, analisis yang tepat untuk الجوُّ ialah …',['Isim كان marfu’','Khabar كان manshub','Maf’ul bih'],0,'كان merafa’kan isim dan menashabkan khabar; الجوّ adalah isim كان.'],
  ['Dalam “لَمْ يَسْعَ الْوَلَدُ إِلَى السُّوقِ”, tanda jazm يسعَ adalah …',['Hadzf huruf ‘illah','Sukun','Hadzf nun'],0,'يسعى adalah fi’il mudhari’ mu’tal akhir; setelah لم dijazmkan dengan membuang huruf ‘illah.'],
  ['Pada “أَكْرَمَ الْمُدِيرُ الْفَائِزِينَ”, bentuk أكرمَ mengikuti pola …',['أفعلَ','فعّلَ','استفعلَ'],0,'أكرمَ merupakan fi’il mazid pola أفعلَ dari akar ك ر م.'],

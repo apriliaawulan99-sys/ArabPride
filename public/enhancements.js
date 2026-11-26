@@ -24,10 +24,13 @@
   function rebuildExtraAnalysis(){
     const lesson=$('#lesson');if(!lesson||!window.extraTexts)return;
     const old=lesson.querySelector('h3');
-    const generated=[...lesson.querySelectorAll('.analysis-group')].filter(x=>x.textContent.includes('Teks 04')||x.textContent.includes('Teks 05')||x.textContent.includes('Teks 06')||x.textContent.includes('Teks 07'));
+    // Remove the earlier word-list-only copy of texts 4–7 so each text appears once.
+    const earlier=lesson.querySelectorAll('div');
+    earlier.forEach(node=>{if(node!==lesson && node.querySelector(':scope > h3') && /empat teks tambahan/i.test(node.textContent)) node.remove();});
+    const generated=[...lesson.querySelectorAll('.analysis-group')].filter(x=>/Teks 0[4-7]/i.test(x.textContent));
     generated.forEach(x=>x.remove());
     const heading=make('h3','','Analisis teks 04–07 per kalimat');const intro=make('p','muted','Setiap kalimat diuraikan terlebih dahulu, kemudian seluruh kata di dalamnya dijelaskan fungsi nahwu dan bentuk sharafnya.');const groupContainer=make('div','extra-analysis-groups');
-    const target=lesson.querySelector('.note'); if(target){target.insertAdjacentElement('afterend',heading);heading.insertAdjacentElement('afterend',intro);intro.insertAdjacentElement('afterend',groupContainer);}
+    const target=lesson.querySelector('.note'); const originals=[...lesson.querySelectorAll('.analysis-group')].filter(x=>/TEKS 0[1-3]/i.test(x.textContent)); const anchor=originals[originals.length-1]||target; if(anchor){anchor.insertAdjacentElement('afterend',heading);heading.insertAdjacentElement('afterend',intro);intro.insertAdjacentElement('afterend',groupContainer);}
     // Keep all seven texts in a consistent numerical order: 01–07.
     window.extraTexts.forEach((t,i)=>{
       const d=make('details','analysis-group');const summary=make('summary','',`TEKS 0${i+4} — ${t.title} (${sentenceGroups(t).length} kalimat)`);d.append(summary);
@@ -48,7 +51,7 @@
     ['يَحْمِلُ أَحْمَدُ حَقِيبَةً جَدِيدَةً',['جَدِيدَةً','أَحْمَدُ','حَقِيبَةً','يَحْمِلُ'],'أحمد fa’il, حقيبة maf’ul bih, جديدة na’at manshub.'],
     ['يَشْرَبُ الطِّفْلُ الْحَلِيبَ صَبَاحًا',['صَبَاحًا','الْحَلِيبَ','يَشْرَبُ','الطِّفْلُ'],'الطفل fa’il, الحليب maf’ul bih, صباحًا zharaf zaman.'],
     ['تَقْرَأُ الْمُعَلِّمَةُ قِصَّةً لِلْأَطْفَالِ',['لِلْأَطْفَالِ','قِصَّةً','تَقْرَأُ','الْمُعَلِّمَةُ'],'المعلمة fa’il, قصة maf’ul bih, للأطفال جار ومجرور.'],
-    ['يَحْفَظُ التِّلْمِيذُ الْكَلِمَاتِ الْجَدِيدَةَ',['الْكَلِمَاتِ','يَحْفَظُ','الْجَدِيدَةَ','التِّلْمِيذُ'],'التلميذ fa’il; الكلمات maf’ul bih; الجديدة na’at manshub (jamak muannats salim).']
+    ['يَحْفَظُ التِّلْمِيذُ الْكَلِمَاتِ الْجَدِيدَةَ',['الْكَلِمَاتِ','يَحْفَظُ','الْجَدِيدَةَ','التِّلْمِيذُ'],'التلميذ fa’il; الكلمات maf’ul bih; الجديدة na’at manshub (jamak muannats salim).'],
     ['يَفْتَحُ الْحَارِسُ بَابَ الْمَدْرَسَةِ صَبَاحًا',['صَبَاحًا','بَابَ','يَفْتَحُ','الْمَدْرَسَةِ','الْحَارِسُ'],'يفتح فعل، الحارس فاعل، باب مفعول به وهو مضاف، المدرسة مضاف إليه، وصباحًا ظرف زمان.'],
     ['تَجْلِسُ فَاطِمَةُ مَعَ أُخْتِهَا فِي الْحَدِيقَةِ',['فِي','أُخْتِهَا','تَجْلِسُ','الْحَدِيقَةِ','مَعَ','فَاطِمَةُ'],'فاطمة فاعل، مع ظرف/اسم منصوب وهو مضاف، أخت مضاف إليه، وفي الحديقة جار ومجرور.'],
     ['يَحْمِلُ الطَّالِبَانِ الْكُتُبَ إِلَى الْفَصْلِ',['إِلَى','الطَّالِبَانِ','الْكُتُبَ','يَحْمِلُ','الْفَصْلِ'],'الطالبان فاعل مثنى مرفوع بالألف، الكتب مفعول به، وإلى الفصل جار ومجرور.'],
@@ -65,7 +68,7 @@
     ['يَشْرَبُ الطِّفْلُ الْمَاءَ','الطِّفْلُ',['Fa’il','Maf’ul bih','Isim majrur'],0,'الطفل adalah pelaku yang minum.'],
     ['وَضَعَتْ أُمِّي الطَّعَامَ عَلَى الطَّاوِلَةِ','عَلَى',['Isim','Fi’il','Huruf jar'],2,'على merupakan huruf jar yang menjarkan الطاولة.'],
     ['يَلْعَبُ الأَطْفَالُ فِي السَّاحَةِ','فِي',['Huruf jar','Isim','Fi’il'],0,'في adalah huruf jar.'],
-    ['رَأَيْتُ طَالِبًا مُجْتَهِدًا','مُجْتَهِدًا',['Fa’il','Na’at manshub','Isim majrur'],1,'مجتهد menerangkan طالبًا dan mengikuti nashab-nya.']
+    ['رَأَيْتُ طَالِبًا مُجْتَهِدًا','مُجْتَهِدًا',['Fa’il','Na’at manshub','Isim majrur'],1,'مجتهد menerangkan طالبًا dan mengikuti nashab-nya.'],
     ['يَشْرَحُ الْمُعَلِّمُ الْقَاعِدَةَ لِلطُّلَّابِ','الْقَاعِدَةَ',['Fa’il','Maf’ul bih','Isim majrur'],1,'Guru menjelaskan kaidah; القاعدة adalah objek langsung sehingga maf’ul bih manshub.'],
     ['إِنَّ الطَّالِبَيْنِ مُجْتَهِدَانِ','الطَّالِبَيْنِ',['Isim إنَّ manshub','Khabar إنَّ marfu’','Fa’il'],0,'الطالبين adalah isim إنَّ dan manshub dengan ya karena mutsanna.'],
     ['مَرَرْتُ بِالْمُعَلِّمِينَ','الْمُعَلِّمِينَ',['Maf’ul bih','Isim majrur','Fa’il'],1,'بِ adalah huruf jar; المعلمين isim majrur dengan ya karena jamak mudzakkar salim.'],
@@ -82,7 +85,7 @@
     ['مَكْتُوبٌ',['ك ت ب – مَفْعُول','ك ت ب – فَاعِل','ك ت ب – مِفْعَال'],0,'مكتوب adalah isim maf’ul dari كَتَبَ dengan pola مفعول.'],
     ['اِجْتَمَعَ',['ج م ع – اِفْتَعَلَ','ج م ع – تَفَاعَلَ','ج م ع – أَفْعَلَ'],0,'اجتمع mengikuti pola افتعل.'],
     ['يَسْتَخْرِجُونَ',['خ ر ج – اِسْتَفْعَلَ','خ ر ج – فَعَلَ','خ ر ج – فَاعَلَ'],0,'يستخرجون berasal dari استخرج–يستخرج, pola استفعل; واو الجماعة penanda pelaku jamak.'],
-    ['نَظَّفَتْ',['ن ظ ف – فَعَّلَ','ن ظ ف – فَاعَلَ','ن ظ ف – اِنْفَعَلَ'],0,'نظّفت berasal dari نظّف dengan pola فعّل; تْ menunjukkan pelaku perempuan tunggal.']
+    ['نَظَّفَتْ',['ن ظ ف – فَعَّلَ','ن ظ ف – فَاعَلَ','ن ظ ف – اِنْفَعَلَ'],0,'نظّفت berasal dari نظّف dengan pola فعّل; تْ menunjukkan pelaku perempuan tunggal.'],
     ['مُسْتَخْدَمٌ',['خ د م – اسم مفعول من اِسْتَخْدَمَ','خ د م – اسم فاعل من خَدَمَ','ك ت ب – مفعول'],0,'مستخدم dalam konteks ini adalah isim maf’ul dari اِسْتَخْدَمَ–يَسْتَخْدِمُ, pola مُسْتَفْعَل.'],
     ['اِنْكَسَرَ',['ك س ر – اِنْفَعَلَ','ك س ر – تَفَعَّلَ','ك س ر – فَاعَلَ'],0,'انكسر berasal dari كَسَرَ dengan pola انْفَعَلَ; menunjukkan makna menjadi pecah.'],
     ['مُجْتَهِدُونَ',['ج ه د – اسم فاعل من اِجْتَهَدَ','ج ه د – اسم مفعول','ج م ع – تفاعل'],0,'مجتهد adalah isim fa’il dari اِجْتَهَدَ–يَجْتَهِدُ; bentuk jamaknya مجتهدون.'],
