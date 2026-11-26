@@ -21,3 +21,6 @@ Navigasi, materi, dan kuis pilihan ganda berjalan di browser. Login, database, p
 - Audio bacaan menggunakan Speech Synthesis browser dengan locale Arab Saudi (ar-SA); ketersediaan suara bergantung pada perangkat/browser.
 - Mini Games terdiri dari 3 permainan dengan 10 soal masing-masing. Sentence Puzzle menyediakan bank potongan kata, ruang susun, pemeriksaan, dan menu kunci jawaban terpisah.
 - Analisis teks tambahan 04–07 disusun per kalimat dan mencantumkan analisis setiap kata yang tersedia dalam data teks.
+
+
+Pembaruan: 15 soal pada masing-masing dari 3 mini games; pre-test dan post-test masing-masing 30 soal. Audio memakai text-to-speech Arab pada perangkat dengan laju diperlambat. Pelafalan TTS berbeda menurut suara/perangkat dan tidak dapat dijamin sebagai rekaman qari/penutur yang tervalidasi; untuk akurasi mutlak gunakan rekaman audio Arab berharakat yang telah diperiksa ahli.

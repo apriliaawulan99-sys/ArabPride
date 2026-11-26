@@ -26,3 +26,6 @@
 - [ ] Kebijakan privasi ditetapkan.
 - [ ] Audio memiliki izin penggunaan.
 - [ ] Fitur yang belum tersedia tidak diklaim sudah aktif.
+
+
+Pembaruan: 15 soal pada masing-masing dari 3 mini games; pre-test dan post-test masing-masing 30 soal. Audio memakai text-to-speech Arab pada perangkat dengan laju diperlambat. Pelafalan TTS berbeda menurut suara/perangkat dan tidak dapat dijamin sebagai rekaman qari/penutur yang tervalidasi; untuk akurasi mutlak gunakan rekaman audio Arab berharakat yang telah diperiksa ahli.

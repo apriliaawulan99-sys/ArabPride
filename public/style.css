@@ -19,3 +19,27 @@ body{background:radial-gradient(ellipse at 15% 8%,#e5edcf 0,transparent 34%),lin
 
 /* Refinements: audio, sentence-level word analysis, and interactive games */
 .audio-button{display:inline-flex;margin:10px 0 2px;align-items:center;gap:8px}.audio-note{font-size:12px;color:var(--muted);margin:12px 0}.word-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px;margin:12px 0}.word-item{display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:9px;padding:10px;background:#fffdf8}.word-item b{font-size:19px;color:#526d43}.word-item span{font-size:13px;line-height:1.55;color:#46584f}.game-question{border:1px solid var(--line);border-radius:12px;padding:14px;margin:13px 0;background:#fffdf8}.game-question label{display:block;margin:8px 0;font-size:14px}.arabic-prompt{font-size:22px;line-height:1.8;color:#344c3d}.puzzle-bank,.puzzle-answer{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:12px;border:1px dashed #a8b99a;border-radius:10px;margin:9px 0;background:#f7f8ef;align-items:center}.puzzle-answer{background:#fffdf5;border-style:solid;min-height:58px}.word-tile{border:1px solid #91a47d;background:#eef2e5;color:#334a37;border-radius:9px;padding:9px 12px;font-size:17px;cursor:pointer}.word-tile.selected{background:#e4eddb}.game-feedback{margin-top:9px;font-weight:650;color:#526d43;min-height:22px}.answer-keys{border:1px solid #d8d0b9;border-radius:10px;padding:12px;margin-top:18px;background:#f8f4e8}.answer-keys summary{cursor:pointer;font-weight:750;color:#596f45}.answer-keys p{border-top:1px solid #e5dfcf;padding:10px 0;line-height:1.6}.answer-keys p span[dir=rtl]{font-size:18px}.tab{white-space:nowrap}
+
+/* Woodland motion system: subtle movement throughout, richer on home and games. */
+.panel.active{animation:panel-arrive .55s cubic-bezier(.2,.75,.25,1) both}
+.reading-card,.analysis-group,.quiz-intro,.note,.lesson-card{animation:soft-rise .65s ease both}
+.reading-card:nth-of-type(2n){animation-delay:.08s}.reading-card:nth-of-type(3n){animation-delay:.14s}
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero:before,.hero:after{content:'✦';position:absolute;z-index:-1;color:#d7ad53aa;animation:float-star 5s ease-in-out infinite}
+.hero:before{font-size:32px;left:7%;top:16%}.hero:after{font-size:22px;right:8%;bottom:17%;animation-delay:1.4s}
+.hero-art{animation:hero-drift 6s ease-in-out infinite}
+.pooh-wrap{animation:friend-float 4s ease-in-out infinite}
+.game-card{animation:game-pop .65s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--game-delay,0ms);transition:transform .25s,box-shadow .25s}
+.game-card:hover{transform:translateY(-7px) rotate(-.25deg);box-shadow:0 16px 30px #594b2520}
+.game-question{transition:transform .2s,background .2s}.game-question:focus-within{transform:translateY(-2px);background:#fffdf2}
+.word-tile{transition:transform .16s,box-shadow .16s}.word-tile:hover{transform:translateY(-3px) rotate(-1deg);box-shadow:0 5px 10px #66552a20}
+.game-feedback:not(:empty){animation:feedback-pop .35s ease both}
+.audio-button:hover,.primary-button:hover,.secondary:hover,.tab:hover{transform:translateY(-2px)}
+@keyframes panel-arrive{from{opacity:.25;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes soft-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes game-pop{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes hero-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes friend-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+@keyframes float-star{0%,100%{opacity:.25;transform:translateY(0) rotate(0)}50%{opacity:1;transform:translateY(-15px) rotate(35deg)}}
+@keyframes feedback-pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}

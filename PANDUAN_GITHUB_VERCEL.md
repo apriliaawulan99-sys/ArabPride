@@ -81,3 +81,6 @@ Di proyek Vercel buka **Settings → Domains**, masukkan domain yang dimiliki, l
 6. Uji aksesibilitas serta tampilan pada perangkat siswa.
 
 Jangan mengunggah nama lengkap, rekaman, nilai pribadi, API key, atau data sensitif siswa ke repository publik.
+
+
+Pembaruan: 15 soal pada masing-masing dari 3 mini games; pre-test dan post-test masing-masing 30 soal. Audio memakai text-to-speech Arab pada perangkat dengan laju diperlambat. Pelafalan TTS berbeda menurut suara/perangkat dan tidak dapat dijamin sebagai rekaman qari/penutur yang tervalidasi; untuk akurasi mutlak gunakan rekaman audio Arab berharakat yang telah diperiksa ahli.
