@@ -6,7 +6,7 @@ document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',(
 
 const questions=[
 ['q1','b',"أستيقظُ adalah fi'il mudhari' (kata kerja yang menunjukkan pekerjaan sedang/akan berlangsung)."],
-['q2','a',"Subjek yang tersembunyi pada أذهبُ adalah dhamir أنا karena bentuk fi’ilnya menunjukkan orang pertama tunggal."],
+['q2','a','Subjek yang tersembunyi pada أذهبُ adalah dhamir أنا karena bentuk fi'ilnya menunjukkan orang pertama tunggal.'],
 ['q3','b','الساعةِ menjadi isim majrur karena didahului huruf jar في.'],
 ['q4','a','الخامسةِ adalah na’at/sifat bagi الساعةِ sehingga mengikuti i‘rab-nya, yaitu majrur.'],
 ['q5','c','الفجرَ adalah objek pekerjaan salat, sehingga menjadi maf‘ul bih manshub.'],
